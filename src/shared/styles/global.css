@@ -1,0 +1,78 @@
+:root {
+  --bg: #0f0f14;
+  --card: rgba(20, 20, 28, 0.82);
+  --borda: #2a2a38;
+  --texto: #f2f2f5;
+  --suave: #9a9aae;
+  --destaque: #ff5a1f;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background: var(--bg); color: var(--texto); line-height: 1.5; min-height: 100vh; }
+
+/* Fundo de grafite fixo, com camada escura para manter o texto legível */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(rgba(15, 15, 20, 0.55), rgba(15, 15, 20, 0.8)),
+    url("../assets/grafite-bg.svg") center / cover no-repeat;
+}
+a { color: inherit; text-decoration: none; }
+.container { max-width: 900px; margin: 0 auto; padding: 0 16px 48px; }
+
+.topo { background: rgba(10, 10, 15, 0.7); backdrop-filter: blur(6px); border-bottom: 1px solid var(--borda); margin-bottom: 24px; }
+.topo .container { padding-top: 20px; padding-bottom: 16px; }
+.logo { font-size: 1.8rem; font-weight: 900; font-style: italic; text-transform: uppercase; letter-spacing: 1px; text-shadow: 2px 2px 0 #000; }
+.logo span { color: var(--destaque); }
+.sub { margin: 4px 0 0; color: var(--suave); font-size: .9rem; }
+
+.filtro { margin-bottom: 16px; color: var(--suave); }
+.filtro select { background: var(--card); color: var(--texto); border: 1px solid var(--borda); border-radius: 6px; padding: 6px 10px; margin-left: 6px; }
+
+.mes-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.mes-nav h2 { margin: 0; text-transform: capitalize; font-size: 1.3rem; }
+.mes-nav button { background: var(--card); color: var(--texto); border: 1px solid var(--borda); border-radius: 6px; width: 40px; height: 40px; font-size: 1.1rem; cursor: pointer; }
+.mes-nav button:hover { border-color: var(--destaque); }
+
+.calendario { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.dia-semana { text-align: center; font-size: .75rem; color: var(--suave); padding: 4px 0; }
+.dia { min-height: 64px; padding: 6px; background: var(--card); border: 1px solid var(--borda); border-radius: 6px; font-size: .85rem; position: relative; }
+.dia.vazio { background: transparent; border: none; }
+.dia.com-evento { border-color: var(--destaque); cursor: pointer; }
+.dia.com-evento:hover { background: rgba(40, 40, 55, 0.92); }
+.dia .ponto { display: block; margin-top: 4px; font-size: .65rem; color: var(--destaque); font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.lista-titulo { margin: 32px 0 12px; }
+.lista-eventos { display: grid; gap: 12px; }
+.card-evento { display: flex; gap: 16px; align-items: center; background: var(--card); border: 1px solid var(--borda); border-radius: 10px; padding: 14px; transition: border-color .15s; }
+.card-evento:hover { border-color: var(--destaque); }
+.data-badge { flex: none; width: 56px; text-align: center; background: var(--destaque); color: #000; border-radius: 8px; padding: 6px 0; font-weight: 800; line-height: 1.1; }
+.data-badge small { display: block; font-size: .7rem; text-transform: uppercase; }
+.data-badge strong { font-size: 1.4rem; }
+.card-evento h4 { margin: 0 0 2px; font-size: 1.05rem; }
+.card-evento p { margin: 0; color: var(--suave); font-size: .85rem; }
+.vazio-msg { color: var(--suave); }
+
+.voltar { display: inline-block; margin-bottom: 16px; color: var(--suave); }
+.voltar:hover { color: var(--destaque); }
+.evento-titulo { margin: 0 0 4px; font-size: 2rem; }
+.evento-info { color: var(--suave); margin: 0 0 24px; }
+.evento-desc { margin-bottom: 28px; }
+.secao { margin-bottom: 32px; }
+.secao h3 { margin: 0 0 12px; font-size: 1.1rem; border-left: 4px solid var(--destaque); padding-left: 10px; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag { background: var(--card); border: 1px solid var(--destaque); color: var(--destaque); border-radius: 999px; padding: 4px 14px; font-size: .85rem; font-weight: 600; }
+.jurados { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.jurado { background: var(--card); border: 1px solid var(--borda); border-radius: 10px; padding: 14px; text-align: center; }
+.avatar { width: 56px; height: 56px; border-radius: 50%; background: var(--destaque); color: #000; font-weight: 800; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; }
+.jurado strong { display: block; }
+.jurado span { color: var(--suave); font-size: .85rem; }
+
+@media (max-width: 560px) {
+  .dia { min-height: 48px; padding: 4px; font-size: .75rem; }
+  .dia .ponto { display: none; }
+  .dia.com-evento::after { content: ""; position: absolute; bottom: 4px; left: 50%; width: 6px; height: 6px; margin-left: -3px; border-radius: 50%; background: var(--destaque); }
+  .evento-titulo { font-size: 1.5rem; }
+}
