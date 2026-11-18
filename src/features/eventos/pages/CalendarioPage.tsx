@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { listarEventos } from "../data/eventosService";
+import { useEventos } from "../data/eventosService";
 import { Calendario } from "../components/Calendario";
 import { CardEvento } from "../components/CardEvento";
 import { ProximoEvento } from "../components/ProximoEvento";
@@ -11,7 +11,7 @@ export function CalendarioPage() {
   const [mes, setMes] = useState(hoje.getMonth());
   const [cidade, setCidade] = useState("");
 
-  const todos = useMemo(() => listarEventos(), []);
+  const todos = useEventos();
   const cidades = useMemo(() => [...new Set(todos.map((e) => e.cidade))].sort(), [todos]);
 
   const proximo = useMemo(

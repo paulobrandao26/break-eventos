@@ -1,0 +1,260 @@
+/* Cadastro de evento, vagas e blocos extras da página do evento */
+
+:root { --menta: #5ff0b5; } /* vaga preenchida e link importado */
+
+/* ---------- Página de cadastro ---------- */
+.cadastro { max-width: 760px; margin: 0 auto; }
+.cadastro__titulo {
+  margin: 0 0 6px;
+  font-family: var(--titulo);
+  font-weight: 400;
+  font-size: clamp(1.9rem, 6vw, 3rem);
+  line-height: 1;
+  text-shadow: 3px 3px 0 #000;
+}
+.cadastro__texto { margin: 0 0 22px; color: var(--suave); }
+
+.folha-form {
+  padding: clamp(16px, 4vw, 28px);
+  color: var(--tinta);
+  background: var(--papel);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
+}
+
+.grupo { margin: 0 0 26px; padding: 0; border: 0; min-width: 0; }
+.grupo:last-of-type { margin-bottom: 8px; }
+.fita--pequena { margin-bottom: 8px; font-size: 1rem; padding: 8px 14px; transform: rotate(-0.6deg); }
+
+/* ---------- Campos ---------- */
+.campo { display: flex; flex-direction: column; gap: 6px; margin-top: 14px; min-width: 0; }
+.campo label, .campo .rotulo { font-weight: 800; font-size: 0.92rem; }
+.opcional { font-weight: 500; color: #5d5342; }
+.campo__ajuda { font-size: 0.85rem; color: #5d5342; }
+.campo__erro { min-height: 1.2em; font-size: 0.85rem; font-weight: 700; color: #b00020; }
+.campo__erro--geral { margin: 12px 0 0; }
+
+.campo input:not([type="checkbox"]):not([type="file"]),
+.campo textarea {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  font: inherit;
+  color: var(--tinta);
+  background: #fffdf6;
+  border: 2px solid var(--tinta);
+  border-radius: 0;
+}
+.campo textarea { resize: vertical; }
+.campo input[aria-invalid="true"], .campo textarea[aria-invalid="true"] { border-color: #b00020; background: #fff0ee; }
+.campo input:focus-visible, .campo textarea:focus-visible { outline: 3px solid var(--azul); outline-offset: 1px; box-shadow: none; }
+
+.linha-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; }
+.linha-cidade { display: grid; grid-template-columns: 1fr 90px; gap: 0 14px; }
+
+/* Adicionar item (jurados, organizadores, link) */
+.adicionar { display: flex; gap: 10px; }
+.adicionar input { flex: 1; min-width: 0; }
+.adicionar .btn { flex: none; }
+
+.itens { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 0; padding: 0; list-style: none; }
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 4px 2px 12px;
+  font-weight: 700;
+  background: var(--amarelo);
+  border: 2px solid var(--tinta);
+}
+.item__remover {
+  width: 32px;
+  height: 32px;
+  font: inherit;
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--tinta);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.item__remover:hover { background: var(--tinta); color: var(--papel); }
+
+/* ---------- Modalidades ---------- */
+.opcoes { display: grid; gap: 10px; margin-top: 10px; }
+.opcao {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  cursor: pointer;
+  background: #fffdf6;
+  border: 2px solid var(--tinta);
+}
+.opcao input { flex: none; width: 22px; height: 22px; margin: 2px 0 0; accent-color: var(--tinta); }
+.opcao span { display: flex; flex-direction: column; }
+.opcao small { color: #5d5342; font-size: 0.85rem; }
+.opcao--ativa { background: var(--amarelo); }
+.opcao--ativa small { color: var(--tinta); }
+.linha-2--outra { margin-top: 6px; }
+
+/* ---------- Foto e link ---------- */
+.enviar-foto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 26px 12px;
+  font: inherit;
+  color: var(--tinta);
+  cursor: pointer;
+  background: #fffdf6;
+  border: 2px dashed var(--tinta);
+}
+.enviar-foto:hover { background: var(--amarelo); }
+.enviar-foto small { color: #5d5342; }
+
+.previa { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+.previa img { width: 100%; max-height: 320px; object-fit: cover; border: 2px solid var(--tinta); }
+.previa__acoes { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.link-importado {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--menta);
+  border: 2px solid var(--tinta);
+}
+.link-importado__selo { font-weight: 800; }
+.link-importado a { flex: 1; min-width: 0; overflow-wrap: anywhere; font-weight: 600; }
+.link-importado .btn { min-height: 38px; padding: 4px 12px; }
+
+.acoes-form { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
+
+/* ---------- Página do evento ---------- */
+.evento__barra { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
+.evento__barra .voltar { margin-bottom: 20px; }
+.evento__barra .btn { margin-bottom: 20px; }
+.secao__texto { margin: 14px 0 0; color: var(--suave); max-width: 58ch; }
+
+.detalhes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px;
+  margin: 34px 0 0;
+}
+.detalhe {
+  padding: 12px 14px;
+  color: var(--tinta);
+  background: var(--papel);
+  border: 2px solid #000;
+  box-shadow: 3px 3px 0 #000;
+}
+.detalhe dt { font-size: 0.8rem; font-weight: 800; color: #5d5342; }
+.detalhe dd { margin: 2px 0 0; font-weight: 700; overflow-wrap: anywhere; }
+
+/* ---------- Chave de vagas ---------- */
+.chave { margin-top: 30px; }
+.chave__topo { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 18px; }
+.chave__titulo { margin: 0; font-family: var(--titulo); font-weight: 400; font-size: 1.5rem; text-shadow: 2px 2px 0 #000; }
+.chave__contagem { margin: 0; font-weight: 700; }
+.chave__barra {
+  height: 16px;
+  margin: 10px 0 18px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.45);
+  border: 2px solid var(--papel);
+}
+.chave__barra i { display: block; height: 100%; background: var(--amarelo); transition: width 0.3s ease; }
+
+.vagas {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.vaga {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 10px;
+  color: var(--tinta);
+  background: var(--papel);
+  border: 2px solid #000;
+  box-shadow: 3px 3px 0 #000;
+}
+.vaga--smoke { background: #ffd0e2; }
+.vaga--cheia { background: var(--menta); }
+.vaga--cheia.vaga--smoke { background: var(--rosa); }
+
+.vaga__rotulo { font-size: 0.78rem; font-weight: 800; }
+.vaga__input {
+  width: 100%;
+  min-height: 42px;
+  padding: 8px 10px;
+  font: inherit;
+  color: var(--tinta);
+  background: #fffdf6;
+  border: 2px solid var(--tinta);
+  border-radius: 0;
+}
+.vaga__input:focus-visible { outline: 3px solid var(--azul); outline-offset: 1px; box-shadow: none; }
+.vaga__check { display: flex; align-items: center; gap: 8px; min-height: 32px; font-size: 0.84rem; font-weight: 700; cursor: pointer; }
+.vaga__check input { flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--tinta); }
+.vaga__botao { min-height: 40px; padding: 4px 10px; font-size: 0.88rem; }
+.vaga__erro { min-height: 1.1em; font-size: 0.78rem; font-weight: 700; color: #b00020; }
+
+.vaga__nome { font-family: var(--titulo); font-weight: 400; font-size: 1.05rem; line-height: 1.15; overflow-wrap: anywhere; }
+.vaga__selo {
+  align-self: flex-start;
+  padding: 2px 8px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: var(--papel);
+  background: var(--tinta);
+}
+.vaga__selo--pendente { color: var(--tinta); background: var(--amarelo); border: 2px solid var(--tinta); }
+.vaga__liberar {
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 4px 0;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--tinta);
+  text-decoration: underline;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+/* ---------- Foto do evento (estilo polaroid) ---------- */
+.polaroid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: min(100%, 560px);
+  margin: 26px 0 0;
+  padding: 12px 12px 16px;
+  color: var(--tinta);
+  background: var(--papel);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
+  transform: rotate(-1deg);
+}
+.polaroid img { width: 100%; max-height: 420px; object-fit: cover; border: 2px solid var(--tinta); }
+.polaroid__drive { width: 100%; }
+
+@media (max-width: 760px) {
+  .vagas { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+}
+
+@media (max-width: 560px) {
+  .linha-2 { grid-template-columns: 1fr; }
+  .adicionar { flex-direction: column; }
+  .adicionar .btn { width: 100%; }
+  .acoes-form .btn { flex: 1; }
+}

@@ -1,8 +1,9 @@
-import type { Evento } from "../types/evento";
+import type { EventoCadastro } from "../types/evento";
 
-// Para adicionar um evento: copie um bloco, use um id novo e preencha os dados.
-// horario e local são opcionais; jurados: [] mostra "jurados ainda a confirmar".
-export const EVENTOS: Evento[] = [
+// Eventos fixos (escritos no código). Os eventos cadastrados pelos organizadores
+// ficam em eventosService.ts. Os campos novos (dj, premiacao, organizadores...) são opcionais.
+// As chaves de vagas (1 vs 1, 7 Smoke) são criadas sozinhas a partir das modalidades.
+export const EVENTOS: EventoCadastro[] = [
   {
     id: 4,
     nome: "Street Cut",

@@ -9,6 +9,10 @@ export function Layout() {
             Break Eventos
           </Link>
           <p className="topo__frase">O calendário do break no Brasil.</p>
+
+          <nav className="topo__acoes" aria-label="Organizador">
+            <Link className="btn btn--amarelo" to="/eventos/novo">Cadastrar evento</Link>
+          </nav>
         </div>
       </header>
       <main className="container">

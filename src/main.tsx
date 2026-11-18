@@ -4,6 +4,8 @@ import { App } from "@/app/App";
 import "@fontsource/dela-gothic-one/400.css";
 import "@fontsource-variable/bricolage-grotesque/index.css";
 import "@/shared/styles/global.css";
+import "@/shared/styles/ui.css";
+import "@/features/eventos/styles/formulario.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
