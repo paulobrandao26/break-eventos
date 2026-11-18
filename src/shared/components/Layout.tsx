@@ -8,7 +8,7 @@ export function Layout() {
           <Link to="/" className="marca" aria-label="Break Eventos, página inicial">
             Break Eventos
           </Link>
-          <p className="topo__frase">O calendário do break no Brasil, começando por Recife.</p>
+          <p className="topo__frase">O calendário do break no Brasil.</p>
         </div>
       </header>
       <main className="container">
