@@ -4,11 +4,11 @@ export function Layout() {
   return (
     <>
       <header className="topo">
-        <div className="container">
-          <Link to="/" className="logo">
-            Break <span>Eventos</span>
+        <div className="container topo__linha">
+          <Link to="/" className="marca" aria-label="Break Eventos, página inicial">
+            Break Eventos
           </Link>
-          <p className="sub">Calendário de eventos de breaking no Brasil</p>
+          <p className="topo__frase">O calendário do break no Brasil, começando por Recife.</p>
         </div>
       </header>
       <main className="container">

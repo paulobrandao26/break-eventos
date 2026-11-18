@@ -2,7 +2,9 @@ import { Link, useParams } from "react-router-dom";
 import { buscarEvento } from "../data/eventosService";
 import { ListaJurados } from "../components/ListaJurados";
 import { ListaModalidades } from "../components/ListaModalidades";
-import { formatarData } from "@/shared/utils/datas";
+import { tintaDoEvento } from "../components/tinta";
+import { MESES_ABREV } from "@/shared/utils/datas";
+import { linhaOnde } from "../utils/onde";
 
 export function EventoPage() {
   const { id } = useParams();
@@ -11,30 +13,44 @@ export function EventoPage() {
   if (!evento) {
     return (
       <>
-        <Link className="voltar" to="/">&larr; Voltar ao calendário</Link>
-        <p>Evento não encontrado.</p>
+        <Link className="voltar" to="/">Voltar para a agenda</Link>
+        <p className="muro__vazio">Esse evento não existe ou foi removido.</p>
       </>
     );
   }
 
-  return (
-    <>
-      <Link className="voltar" to="/">&larr; Voltar ao calendário</Link>
-      <h1 className="evento-titulo">{evento.nome}</h1>
-      <p className="evento-info">
-        {formatarData(evento.data)} às {evento.horario} · {evento.local} · {evento.cidade} - {evento.estado}
-      </p>
-      <p className="evento-desc">{evento.descricao}</p>
+  const mes = Number(evento.data.slice(5, 7)) - 1;
 
-      <section className="secao">
-        <h3>Modalidades</h3>
+  return (
+    <article className="evento">
+      <Link className="voltar" to="/">Voltar para a agenda</Link>
+
+      <header className={`evento__cartaz cartaz--${tintaDoEvento(evento.id)}`}>
+        <span className="proximo__fita" aria-hidden="true" />
+        <span className="proximo__data">
+          <strong>{evento.data.slice(8, 10)}</strong>
+          <span>{MESES_ABREV[mes]}</span>
+        </span>
+        <div className="evento__texto">
+          <h1 className="evento__titulo">{evento.nome}</h1>
+          <p className="evento__onde">{linhaOnde(evento)}</p>
+          <p className="evento__desc">{evento.descricao}</p>
+        </div>
+      </header>
+
+      <section className="secao" aria-labelledby="modalidades">
+        <h2 id="modalidades" className="fita">Modalidades</h2>
         <ListaModalidades modalidades={evento.modalidades} />
       </section>
 
-      <section className="secao">
-        <h3>Jurados</h3>
-        <ListaJurados jurados={evento.jurados} />
+      <section className="secao" aria-labelledby="jurados">
+        <h2 id="jurados" className="fita">Jurados</h2>
+        {evento.jurados.length > 0 ? (
+          <ListaJurados jurados={evento.jurados} />
+        ) : (
+          <p className="muro__vazio">Os jurados ainda serão confirmados.</p>
+        )}
       </section>
-    </>
+    </article>
   );
 }
